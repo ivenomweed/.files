@@ -71,8 +71,11 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-eza zsh-syntax-highlighting zsh-autosuggestions)
-
+if command -v eza &> /dev/null; then
+  plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-eza)
+else
+  plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+fi
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -105,3 +108,13 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $CONTAINER_ID ]]; then
 		eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
+function Resume {
+  fg
+  zle push-input
+  BUFFER=""
+  zle accept-line
+}
+zle -N Resume
+bindkey "^Z" Resume
+
