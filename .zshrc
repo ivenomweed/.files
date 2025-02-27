@@ -72,9 +72,9 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 if command -v eza &> /dev/null; then
-  plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-eza)
+  plugins=(git golang zsh-syntax-highlighting zsh-autosuggestions zsh-eza)
 else
-  plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+  plugins=(git golang zsh-syntax-highlighting zsh-autosuggestions)
 fi
 source $ZSH/oh-my-zsh.sh
 
@@ -104,7 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias vim="nvim"
 if [[ -n $CONTAINER_ID ]]; then
 		eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
@@ -118,3 +118,4 @@ function Resume {
 zle -N Resume
 bindkey "^Z" Resume
 
+eval "$(starship init zsh)"
