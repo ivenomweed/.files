@@ -105,9 +105,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias vim="nvim"
-if [[ -n $CONTAINER_ID ]]; then
-		eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
 function Resume {
   fg
