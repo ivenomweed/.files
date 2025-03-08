@@ -30,6 +30,15 @@ return {
                 additional_vim_regex_highlighting = { "ruby" },
             },
             indent = { enable = true, disable = { "ruby" } },
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "<BS>",
+                    node_incremental = "<BS>",
+                    scope_incremental = "<C-H>", -- <C-BS> reads as <C-H> (in WezTerm, at least)
+                    node_decremental = "<M-BS>",
+                },
+            },
         },
     },
 }

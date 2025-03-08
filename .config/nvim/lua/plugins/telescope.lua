@@ -80,7 +80,12 @@ return {
         vim.keymap.set(
             "n",
             "<leader><leader>",
-            builtin.buffers,
+            function()
+                builtin.buffers(require("telescope.themes").get_dropdown({
+                    winblend = 10,
+                    previewer = false,
+                }))
+            end,
             { desc = "[ ] Find existing buffers" }
         )
 
