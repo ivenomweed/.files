@@ -1,0 +1,30 @@
+[[language]]
+name = "go"
+auto-format = true
+# formatter = { command = "goimports" }
+formatter = { command = "bash", args = ["-c", "goimports | golines -m 80 -t 4"] }
+language-servers = ["gopls"]
+
+# [language-server.gopls.config]
+# gofumpt = true
+# staticcheck = true
+
+# [language-server.gopls.config.codelenses]
+# gc_details = true
+# run_govulncheck = true
+
+# [language-server.gopls.config.analyses]
+# # fieldalignment = true
+# unusedvariable = true
+# shadow = true
+# useany = true
+
+# [language-server.gopls.config.hints]
+# assignVariableTypes = true
+# compositeLiteralFields = true
+# compositeLiteralTypes = true
+# constantValues = true
+# functionTypeParameters = true
+# parameterNames = true
+# rangeVariableTypes = true
+
