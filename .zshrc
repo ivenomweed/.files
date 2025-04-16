@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export GOPATH=$HOME/.local/share/go
-export PATH=$HOME/.local/share/go/bin:$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.local/share/go/bin:$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 #$HOME/.local/nvim/bin:
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -76,6 +77,7 @@ if command -v eza &> /dev/null; then
 else
   plugins=(git golang zsh-syntax-highlighting zsh-autosuggestions)
 fi
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -104,7 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 function gi() { curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;}
 function Resume {
   fg
