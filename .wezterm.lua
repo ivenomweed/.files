@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 config.color_scheme = 'zenbones_dark'
-config.default_prog = { 'ubuntu' }
+--config.default_prog = { 'ubuntu' }
 
 config.colors = {
   foreground      = '#bfbdb6',
