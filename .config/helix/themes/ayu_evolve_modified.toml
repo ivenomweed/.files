@@ -4,10 +4,10 @@ name = "ayu_evolve_modified"
 
 "keyword"                  = { fg = "orange", modifiers = ["italic"] }
 "keyword.control"          = { fg = "orange", modifiers = ["italic"] }
-"keyword.storage"          = { fg = "yellow", modifiers = ["italic"] }
-"keyword.storage.modifier" = { fg = "magenta", modifiers = ["italic"] }
+"keyword.storage"          = { fg = "orange", modifiers = ["italic"] }
+"keyword.storage.modifier" = { fg = "orange", modifiers = ["italic"] }
 "keyword.operator"         = { fg = "orange", modifiers = ["italic"] }
 "keyword.other"            = { fg = "orange", modifiers = ["italic"] }
-"constructor"              = { fg = "magenta", modifiers = ["italic"] }
+"constructor"              = { fg = "orange", modifiers = ["italic"] }
 "ui.virtual.inlay-hint"    = { fg = "#e6b450", bg = "#302a20", modifiers = ["italic"] }
 "function" = {fg = "yellow", modifiers = ["italic"]}

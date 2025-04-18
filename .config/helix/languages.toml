@@ -1,30 +1,145 @@
+[language-server.gopls]
+command = "gopls"
+
+[language-server.gopls.config.hints]
+assignVariableTypes = true
+compositeLiteralFields = true
+constantValues = true
+functionTypeParameters = true
+parameterNames = true
+rangeVariableTypes = true
+
+[language-server.golangci-lint-lsp]
+command = "golangci-lint-langserver"
+
+[language-server.golangci-lint-lsp.config]
+command = ["golangci-lint", "run", "--output.json.path=stdout", "--show-stats=false", "--issues-exit-code=1"]
+
+
 [[language]]
 name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+roots = ["go.work", "go.mod"]
 auto-format = true
-# formatter = { command = "goimports" }
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = [ "gopls", "golangci-lint-lsp" ]
 formatter = { command = "bash", args = ["-c", "goimports | golines -m 80 -t 4"] }
-language-servers = ["gopls"]
+indent = { tab-width = 4, unit = "\t" }
 
-# [language-server.gopls.config]
-# gofumpt = true
-# staticcheck = true
+[language.debugger]
+name = "go"
+transport = "tcp"
+command = "dlv"
+args = ["dap"]
+port-arg = "-l 127.0.0.1:{}"
 
-# [language-server.gopls.config.codelenses]
-# gc_details = true
-# run_govulncheck = true
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [ { name = "entrypoint", completion = "filename", default = "." } ]
+args = { mode = "debug", program = "{0}" }
 
-# [language-server.gopls.config.analyses]
-# # fieldalignment = true
-# unusedvariable = true
-# shadow = true
-# useany = true
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { mode = "exec", program = "{0}" }
 
-# [language-server.gopls.config.hints]
-# assignVariableTypes = true
-# compositeLiteralFields = true
-# compositeLiteralTypes = true
-# constantValues = true
-# functionTypeParameters = true
-# parameterNames = true
-# rangeVariableTypes = true
+[[language.debugger.templates]]
+name = "test"
+request = "launch"
+completion = [ { name = "tests", completion = "directory", default = "." } ]
+args = { mode = "test", program = "{0}" }
 
+[[language.debugger.templates]]
+name = "attach"
+request = "attach"
+completion = [ "pid" ]
+args = { mode = "local", processId = "{0}" }
+
+[[language.debugger.templates]]
+name = "core"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" }, { name = "core", completion = "filename" } ]
+args = { mode = "core", program = "{0}", coreFilePath = "{1}" }
+
+[[language]]
+name = "gomod"
+scope = "source.gomod"
+injection-regex = "gomod"
+file-types = [{ glob = "go.mod" }]
+auto-format = true
+comment-token = "//"
+language-servers = [ "gopls" ]
+indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "gowork"
+scope = "source.gowork"
+injection-regex = "gowork"
+file-types = [{ glob = "go.work" }]
+auto-format = true
+comment-token = "//"
+language-servers = [ "gopls" ]
+indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "html"
+scope = "text.html.basic"
+injection-regex = "html"
+file-types = [
+	"html",
+	"htm",
+	"shtml",
+	"xhtml",
+	"xht",
+	"jsp",
+	"asp",
+	"aspx",
+	"jshtm",
+	"volt",
+	"rhtml",
+	"cshtml",
+]
+block-comment-tokens = { start = "<!--", end = "-->" }
+language-servers = [
+	"vscode-html-language-server",
+	"tailwindcss-ls",
+	"emmet-lsp",
+]
+auto-format = true
+
+[[language]]
+name = "gotmpl"
+scope = "source.gotmpl"
+injection-regex = "gotmpl"
+file-types = ["gotmpl", "tmpl"]
+comment-token = "//"
+block-comment-tokens = { start = "/*", end = "*/" }
+language-servers = ["gopls",
+	"vscode-html-language-server",
+	"tailwindcss-ls",
+	"emmet-lsp",
+
+]
+# formatter  = { command = "prettier", args = ["--parser", "go-template", "--plugin", "prettier-plugin-go-template"] }
+indent = { tab-width = 4, unit = " " }
+auto-format = true
+[language.formatter]
+command = "prettier"
+args    = [
+  "--write",
+  "--parser", "go-template",
+	"--tab-width", "4",
+  "--plugin",   "/home/venomweed/.local/share/fnm/node-versions/v23.11.0/installation/lib/node_modules/prettier-plugin-go-template/lib/index.js"
+]
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+[language-server.emmet-lsp]
+command = "emmet-ls"
+args = ["--stdio"]
